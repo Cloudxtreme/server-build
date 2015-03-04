@@ -20,11 +20,10 @@ sudo apt-get install rdiff-backup --assume-yes
 
 # copy the scripts
 sudo mkdir /backups/scripts
-sudo cp ~/ubuntu/source/config/backups-scripts/dumpmysql.sh /backups/scripts/dumpmysql.sh
-sudo cp ~/ubuntu/source/config/backups-scripts/rdiffbackup.sh /backups/scripts/rdiffbackup.sh
+sudo cp ~ubuntu/source/config/backups-scripts/* /backups/scripts/
 
 # setup a crontab file in /etc/crontab.d
-sudo cp ~/ubuntu/source/config/backups-conf/mybackups.cron /etc/cron.d/mybackups
+sudo cp ~ubuntu/source/config/backups-conf/mybackups.cron /etc/cron.d/mybackups
 
 # Commit to etckeeper
 if [ -e ~ubuntu/source/temp/etckeeper ]; then 
