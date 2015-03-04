@@ -1,0 +1,7 @@
+#
+# Enable and configure Query Cache
+#
+[mysqld]
+query_cache_type  = 1
+query_cache_limit = 1M
+query_cache_size  = 24M

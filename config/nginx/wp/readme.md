@@ -1,0 +1,1 @@
+# http://codex.wordpress.org/Nginx

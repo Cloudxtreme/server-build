@@ -1,0 +1,25 @@
+#!/bin/bash
+#
+if [ "$1" == "stop" ]; then
+  SIG="stopped"
+else
+  SIG="started"
+fi
+
+SUBJ="Server '"`hostname`"' $SIG at "`date +"%H:%M:%S"`
+MSG="Server '"`hostname -f`"'\n"$SIG" at "`date +"%a, %d %b %Y, %H:%M:%S (%Z)"`
+
+if [ "$1" == "start" ]; then
+  # add basic performance info
+  MSG=$MSG"\n\n"`/usr/bin/landscape-sysinfo --exclude-sysinfo-plugins=LandscapeLink`
+fi
+
+MSG=$MSG"\n\n[runlevel: "`runlevel`"]\n"
+
+echo -e "To: `hostname`@`hostname`, Pushover <pushover@`hostname`>\nSubject: $SUBJ\n$MSG\n.\n" |
+sendmail -f `hostname` -F "Ubuntu (`hostname`)" -t
+
+if [ "$1" == "stop" ]; then
+  # allow time for the email to be sent before mail services stop
+  sleep 10
+fi

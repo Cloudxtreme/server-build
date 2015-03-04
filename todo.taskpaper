@@ -1,0 +1,21 @@
+Repo Maintenance:
+	- add to a private repo so keys can be stored in one place
+
+Deployment
+	- automatic deployment script, loops through the relevant folders executing scripts
+	- automatic deployment with AWS from AWS Console
+
+Backups
+	- CrashPlan: Need automated install and deploy. Can we just copy config files from an active server?
+
+Apache:
+	- test SNI is working
+
+Apache Deploy
+	- Deploy site from git repo
+	- Restore wordpress from backup with sql
+	- restore wordpress from git repo (including and sql changes needed for path)
+
+Apache Scripts:
+	- build template folder structure
+	- create a template site.conf file (and symlink to /etc/apache2/sites-available)

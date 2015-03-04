@@ -1,0 +1,6 @@
+#
+# Do not listen for TCP/IP connections at all.
+# All interaction with mysqld must be made using Unix socket files.
+#
+[mysqld]
+skip-networking

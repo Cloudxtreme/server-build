@@ -1,0 +1,33 @@
+disabled_commands:
+ - db drop
+ - db reset
+ - core multisite-convert
+
+skip-plugins:
+ - hello
+
+core install:
+  title: Wordpress Site Installed By wp-cli
+  admin_user: wp-admin
+  admin_password: admin123
+  admin_email: root@localhost
+
+core download:
+  locale: en_GB
+
+core config:
+  dbhost: localhost:/var/run/mysqld/mysqld.sock
+  extra-php: |
+    /** Force SSL Logins and SSL Admin Admin Access */
+    define('FORCE_SSL_ADMIN', false);
+
+
+    /** WordPress Debug mode */
+    define('WP_DEBUG', false);
+    define('WP_DEBUG_LOG', false);
+    define('WP_DEBUG_DISPLAY', false);
+    @ini_set('display_errors',0);
+
+
+    /** Relocate Switch for use when moving the site URL */
+    define('RELOCATE', true); // change this once the site is configured
