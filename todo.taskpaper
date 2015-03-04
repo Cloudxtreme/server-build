@@ -1,15 +1,24 @@
 Repo Maintenance:
 	- add to a private repo so keys can be stored in one place
 
+General
+	- Error checking! Currently the scripts need to be watched as there is almost no error checking.
+	- Reduce the number of calls to apt-get that require downloads. For some reason these are running really slow now on AWS-AU-Sydney.
+
 Deployment
 	- automatic deployment script, loops through the relevant folders executing scripts
 	- automatic deployment with AWS from AWS Console
 
+Core
+	- really don't like replacing etc/crontab ... what edits are we making?
+
 Backups
 	- CrashPlan: Need automated install and deploy. Can we just copy config files from an active server?
+	- CrashPlan: How to automatically get the latest version (not critical as CrashPlan is self-updating)
 
 Apache:
 	- test SNI is working
+	- move deploying the test site into it's own file (so this can be optional)
 
 Apache Deploy
 	- Deploy site from git repo
@@ -19,3 +28,6 @@ Apache Deploy
 Apache Scripts:
 	- build template folder structure
 	- create a template site.conf file (and symlink to /etc/apache2/sites-available)
+
+Mail
+	- remove pushover api string from install-mail-postfix
