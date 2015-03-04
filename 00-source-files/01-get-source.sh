@@ -16,9 +16,12 @@ fi
 
 
 # Download source files from GitHub
-curl --progress-bar --header "Authorization: token {__GITHUBAUTHTOKEN}" \
-  --location --url "https://api.github.com/repos/danielmerriott/server-build/tarball/master" \
-  --output ~/source.tar.gz 
+#curl --progress-bar --header "Authorization: token {__GITHUBAUTHTOKEN}" \
+#  --location --url "https://api.github.com/repos/danielmerriott/server-build/tarball/master" \
+#  --output ~/source.tar.gz
+curl --progress-bar --location
+     --url "https://api.github.com/repos/danielmerriott/server-build/tarball/master" \
+     --output ~/source.tar.gz  
 
 # Extract into ~/source
 rm -rf ~/source
