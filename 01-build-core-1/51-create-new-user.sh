@@ -5,7 +5,7 @@
 ###
 ### ****************************************************************************
 
-if [ -z ${__USERAUTHYINFO+x} ]; then
+if [ -z ${__NEWUSERAUTHYINFO+x} ]; then
 	echo "ERROR: No authy access information found for user account"
 	return;
 fi
