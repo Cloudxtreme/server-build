@@ -5,11 +5,6 @@
 ###
 ### ****************************************************************************
 
-# Setup /data/mysql
-sudo mkdir /data/mysql
-sudo chown mysql:mysql /data/mysql
-sudo chmod 2775 /data/mysql
-
 # use the ppa:ondrej for mysql to get the latest available
 sudo add-apt-repository ppa:ondrej/mysql-5.6 --yes
 sudo apt-key update
@@ -49,7 +44,12 @@ unset NEWMYSQLROOTPWD
 # or just use --defaults-file=/etc/mysql/debian.cnf
 
 # Mysql config
-sudo cp ~ubuntu/source/config/mysql-conf/*.conf /etc/mysql/conf.d
+sudo cp ~ubuntu/source/config/mysql-conf/*.cnf /etc/mysql/conf.d
+
+# Setup /data/mysql
+sudo mkdir /data/mysql
+sudo chown mysql:mysql /data/mysql
+sudo chmod 2775 /data/mysql
 
 # Add logs to logentries agent
 if [ -e ~ubuntu/source/temp/logentries ]; then 
