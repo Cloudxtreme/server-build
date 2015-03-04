@@ -20,7 +20,7 @@ if [ -z ${__AUTHYAPIKEY+x} ]; then
 	echo "ERROR: No Authy API Key found"
 	return;
 fi
-if [ -z ${__USERAUTHYINFO+x} ]; then
+if [ -z ${__NEWUSERAUTHYINFO+x} ]; then
 	echo "ERROR: No authy access information found for user account"
 	return;
 fi
