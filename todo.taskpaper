@@ -13,7 +13,7 @@ Core
 	- really don't like replacing etc/crontab ... what edits are we making?
 
 Backups
-	- CrashPlan: Need automated install and deploy. Can we just copy config files from an active server?
+	- CrashPlan: Need automated install and deploy. Can we just copy config files from an active server? (also can we copy the install script from the point after the variables are set?)
 	- CrashPlan: How to automatically get the latest version (not critical as CrashPlan is self-updating)
 
 Apache:
