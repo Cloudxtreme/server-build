@@ -5,7 +5,7 @@
 ###
 ### ****************************************************************************
 
-sudo apt-get install xterm libswt-gtk-3-java
+sudo apt-get install xterm libswt-gtk-3-java --assume-yes
 
 # ssh config
 sudo sed -i "s/^[ \t]*ForwardAgent.*/ForwardAgent yes/" /etc/ssh/ssh_config
