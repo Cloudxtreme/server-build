@@ -39,9 +39,9 @@ fi
 [[ -d ${BACKUPROOT}/${JOBNAME} ]] || mkdir ${BACKUPROOT}/${JOBNAME}
 
 # run rdiff-backup
-echo "Running rdiff-backup job for ${SOURCEFLDR}"
+#echo "Running rdiff-backup job for ${SOURCEFLDR}"
 rdiff-backup ${SOURCEFLDR} ${BACKUPROOT}/${JOBNAME}
 
 # clean-up old backup files
-echo "Cleaning up old backup data for ${SOURCEFLDR}"
-rdiff-backup --force --remove-older-than ${MAXAGEDAYS}D ${BACKUPROOT}/${JOBNAME}
+#echo "Cleaning up old backup data for ${SOURCEFLDR}"
+rdiff-backup --force --remove-older-than ${MAXAGEDAYS}D ${BACKUPROOT}/${JOBNAME} > /dev/null
