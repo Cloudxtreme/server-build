@@ -12,9 +12,15 @@
 ###
 ### ****************************************************************************
 
+# check for pushover email api key
+if [ -z ${__PUSHOVEREMAILAPIKEY+x} ]; then
+	echo "ERROR: No Pushover Email API Key found"
+	return;
+fi
+
 # Setup 'DNSHOSTNAME' variable (see config/etc-profile/7x-xxx-profile.sh)
-if [ -e ~/source/temp/.cloudprofile ]; then 
-  for f in $(<~/source/temp/.cloudprofile)
+if [ -e ~/source/temp/cloudprofile ]; then 
+  for f in $(<~/source/temp/cloudprofile)
   do
     . ~/source/config/etc-profile/${f}
   done
@@ -79,7 +85,7 @@ sudo sed -i '/^#myorigin = \/etc\/mailname.*/d' /etc/postfix/main.cf
 printf "%-15s%s\n" ubuntu: root | sudo tee -a /etc/aliases
 printf "%-15s%s\n" $HOSTNAME: root | sudo tee -a /etc/aliases
 printf "%-15s%s\n" root: \\root,hostmaster@openleaf.ws | sudo tee -a /etc/aliases
-printf "%-15s%s\n" pushover: 4x27eK1lwS3QGKR1DX7v6AJCdrK5qk@api.pushover.net | sudo tee -a /etc/aliases
+printf "%-15s%s\n" pushover: ${__PUSHOVEREMAILAPIKEY}@api.pushover.net | sudo tee -a /etc/aliases
 sudo newaliases
 
 # reload config
