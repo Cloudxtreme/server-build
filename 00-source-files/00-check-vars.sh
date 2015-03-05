@@ -36,3 +36,9 @@ if [ -z ${__NEWUSERLONGNAME+x} ]; then
 	echo "ERROR: No full name found for user account"
 	return;
 fi
+if [ -z ${__PUSHOVEREMAILAPIKEY+x} ]; then
+	echo "ERROR: No Pushover Email API Key found"
+	return;
+fi
+
+
