@@ -1,0 +1,4 @@
+# cron entry for apticron
+
+# MM HH DD Mo WD USER COMMAND
+  30 11 *  *  5  root if test -x /usr/sbin/apticron; then /usr/sbin/apticron --cron; else true; fi
