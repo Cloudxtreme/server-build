@@ -6,7 +6,7 @@ else
   SIG="started"
 fi
 
-SUBJ="Server '"`hostname`"' $SIG at "`date +"%H:%M:%S"`
+SUBJ="Server '"$(hostname)"' $SIG at "`date +"%H:%M:%S"`
 MSG="Server '"`hostname -f`"'\n"$SIG" at "`date +"%a, %d %b %Y, %H:%M:%S (%Z)"`
 
 if [ "$1" == "start" ]; then
@@ -16,8 +16,8 @@ fi
 
 MSG=$MSG"\n\n[runlevel: "`runlevel`"]\n"
 
-echo -e "To: `hostname`@`hostname`, Pushover <pushover@`hostname`>\nSubject: $SUBJ\n$MSG\n.\n" |
-sendmail -f `hostname` -F "Ubuntu (`hostname`)" -t
+echo -e "To: root@$(hostname), Pushover <pushover@$(hostname)>\nSubject: $SUBJ\n$MSG\n.\n" |
+sendmail -f $(hostname) -F "Ubuntu" -t
 
 if [ "$1" == "stop" ]; then
   # allow time for the email to be sent before mail services stop
