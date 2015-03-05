@@ -19,7 +19,7 @@ fi
 #curl --progress-bar --header "Authorization: token {__GITHUBAUTHTOKEN}" \
 #  --location --url "https://api.github.com/repos/danielmerriott/server-build/tarball/master" \
 #  --output ~/source.tar.gz
-curl --progress-bar --location
+curl --progress-bar --location \
      --url "https://api.github.com/repos/danielmerriott/server-build/tarball/master" \
      --output ~/source.tar.gz  
 
@@ -30,5 +30,5 @@ tar --gzip --extract --file source.tar.gz --directory ~ --transform 's;/*[^/]*;s
 rm ~/source.tar.gz
 # Make build files executable
 find ~/source -type f -name "*.sh" -exec chmod +x {} \;
-# Crete temp area
+# Create temp area
 mkdir ~/source/temp
