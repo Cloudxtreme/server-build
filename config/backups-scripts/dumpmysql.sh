@@ -6,7 +6,7 @@
 ### ****************************************************************************
 
 # config
-BACKUPROOT=/backups/mysql
+BACKUPROOT=/data/mysql
 MAXAGEDAYS=30
 EXCLUDEDBS="'information_schema', 'performance_schema', 'test'"
 MYSQLOPTS="--defaults-file=/etc/mysql/debian.cnf"
@@ -35,10 +35,7 @@ DATABASES=$(mysql ${MYSQLOPTS} -Bse "SELECT schema_name FROM information_schema.
 for DBNAME in $DATABASES
 do
     JOBNAME=${DBNAME,,}
-    if [ ! -d ${BACKUPROOT}/${JOBNAME} ]; then
-        mkdir ${BACKUPROOT}/${JOBNAME}
-    fi
-    echo "Running mysqldump job for ${DBNAME}"
+    #echo "Running mysqldump job for ${DBNAME}"
     mysqldump ${MYSQLDUMPOPTS} ${DBNAME} --result-file=${BACKUPROOT}/${JOBNAME}.sql
 done
 

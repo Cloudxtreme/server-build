@@ -2,20 +2,20 @@
 
 ### backup sql databases
 # MM HH DD Mo WD USER COMMAND
-  03 *  *  *  *  root /bin/bash /backups/scripts/dumpmysql.sh
+  03 *  *  *  *  root /bin/bash /data/scripts/dumpmysql.sh
 
 ### backup /data/*
 # MM HH DD Mo WD USER COMMAND
-  07 *  *  *  *  root /bin/bash "for $fldr in /data/*/; do /backups/scripts/rdiffbackup.sh $fldr ; done"
+  07 *  *  *  *  root for fldr in /data/*/; do /bin/bash /data/scripts/rdiffbackup.sh $fldr; done
 
 ### backup /home/*
 # MM HH DD Mo WD USER COMMAND
-  11 *  *  *  *  root /bin/bash "for $fldr in /home/*/; do /backups/scripts/rdiffbackup.sh $fldr ; done"
+  11 *  *  *  *  root for fldr in /home/*/; do /bin/bash /data/scripts/rdiffbackup.sh $fldr; done
 
 ### backup /etc
 # MM HH DD Mo WD USER COMMAND
-  13 *  *  *  *  root /bin/bash /backups/scripts/rdiffbackup.sh /etc
+  37 *  *  *  *  root /bin/bash /data/scripts/rdiffbackup.sh /etc
 
 ### backup /root
 # MM HH DD Mo WD USER COMMAND
-  17 *  *  *  *  root /bin/bash /backups/scripts/rdiffbackup.sh /root
+  53 *  *  *  *  root /bin/bash /data/scripts/rdiffbackup.sh /root
