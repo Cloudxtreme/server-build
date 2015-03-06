@@ -1,26 +1,31 @@
 Repo Maintenance:
 	- add to a private repo so keys can be stored in one place
 
-General
+General:
 	- Error checking! Currently the scripts need to be watched as there is almost no error checking.
 	- Reduce the number of calls to apt-get that require downloads. For some reason these are running really slow now on AWS-AU-Sydney.
+	- keys need to be loaded after the reboot! @priority
 
-Deployment
+Deployment:
 	- automatic deployment script, loops through the relevant folders executing scripts
 	- automatic deployment with AWS from AWS Console
 
-Core
-	- really don't like replacing etc/crontab ... what edits are we making?
+Core:
+	- really don't like replacing etc/crontab ... what edits are we making? @done
+	- fix error "__git_ps1: command not found" after 21-config-git is run
+	- mysql install script complains that pwgen isn't install @priority (is it enabled by multiverse?)
 
-Backups
+Backups:
+	- Make Cron Jobs Quiet @priority @done
 	- CrashPlan: Need automated install and deploy. Can we just copy config files from an active server? (also can we copy the install script from the point after the variables are set?)
 	- CrashPlan: How to automatically get the latest version (not critical as CrashPlan is self-updating)
+	- CrashPlan: combine xterm install scripts with CrashPlan as that's the only reason we install this stuff
 
 Apache:
 	- test SNI is working
 	- move deploying the test site into it's own file (so this can be optional)
 
-Apache Deploy
+Apache Deploy:
 	- Deploy site from git repo
 	- Restore wordpress from backup with sql
 	- restore wordpress from git repo (including and sql changes needed for path)
@@ -29,5 +34,6 @@ Apache Scripts:
 	- build template folder structure
 	- create a template site.conf file (and symlink to /etc/apache2/sites-available)
 
-Mail
-	- remove pushover api string from install-mail-postfix
+Mail:
+	- remove pushover api string from install-mail-postfix @done
+	- purge files that contained pushover api string from the repo
