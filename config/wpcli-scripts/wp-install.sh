@@ -48,8 +48,8 @@ RewriteRule . /index.php [L]
 </IfModule>
 # END WordPress
 EOL
-chown www-data:www-data .htaccess
-chmod 660 .htaccess
+sudo chown www-data:www-data .htaccess
+sudo chmod 660 .htaccess
 
 # deploy some wordpress defaults
 wp option update timezone_string 'Pacific/Auckland'
@@ -62,28 +62,45 @@ wp option update blog_public 0
 wp rewrite structure '/%postname%'
 
 # deploy standard my plugin setup
-wp plugin delete hello                        # remove hello dolly
-wp plugin get jetpack                         # wordpress features
-wp plugin get debug-bar                       # development tool
-wp plugin get developer                       # development tool
-wp plugin get log-deprecated-notices          # development tool
-wp plugin get never-email-passwords           # security tool
-wp plugin get wp-password-policy-manager      # security tool
-#wp plugin get force-strong-passwords         # security tool - alt: enforce-strong-password
-wp plugin get authy-two-factor-authentication # security tool
-wp plugin get cloudflare                      # performance and security
-wp plugin get use-google-libraries            # performance - use google's AJAX library
-wp plugin get google-analytics-for-wordpress  # yoast google analytics
-wp plugin get wordpress-seo                   # yoast wordpress seo
-wp plugin get contact-form-7                  # contact forms
-wp plugin get sumome                          # testing for now
+wp plugin delete hello                            # remove hello dolly
+wp plugin install jetpack                         # wordpress features
+wp plugin install debug-bar                       # development tool
+wp plugin install developer                       # development tool
+wp plugin install log-deprecated-notices          # development tool
+wp plugin install never-email-passwords           # security tool
+wp plugin install wp-password-policy-manager      # security tool
+#wp plugin install force-strong-passwords         # security tool - alt: enforce-strong-password
+wp plugin install authy-two-factor-authentication # security tool
+wp plugin install cloudflare                      # performance and security
+wp plugin install use-google-libraries            # performance - use google's AJAX library
+wp plugin install google-analytics-for-wordpress  # yoast google analytics
+wp plugin install wordpress-seo                   # yoast wordpress seo
+wp plugin install edit-flow                       # editorial flow
+wp plugin install sumome                          # testing for now
+wp plugin install contact-form-7                  # contact forms
+wp plugin install mailchimp-for-wp                # mailchimp plugin
+
+
+#wp plugin install download-monitor                # download tools needed for email-before-download
+#wp plugin install email-before-download           # get an email before giving access to a downloadable file
+
+# woocommerce
+# swipehq: https://www.swipehq.co.nz/pages/assets/uploads/checkout/plugins/WooCommerce_Swipe_HQ_Checkout_plugin_2.9.1.zip
+# woodojo: http://woodojo.s3.amazonaws.com/downloads/woodojo/woodojo.zip
+# woocommerce-multilingual    # for multi-currency shopping REQUIRES WMPL or;
+# currency-converter-widget   # for multi-currency display
+# projects-by-woothemes
+# testimonials-by-woothemes
+# our-team-by-woothemes
+# features-by-woothemes
+# woosidebars
+
+
 
 # feedwordpress
 # pressforward
-# edit-flow
 # wysija-newsletters (mailpoet)
 # w3-total-cache
-# woocommerce
 # revisr (git control - check it out)
 
 # also consider bitly or yourls, with url-shortener, or shortnit
