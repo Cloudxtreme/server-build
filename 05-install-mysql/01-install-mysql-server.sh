@@ -21,6 +21,9 @@ sudo env MYSQLROOTPWD=$MYSQLROOTPWD bash -c 'echo mysql-server-5.6 mysql-server/
 # Install mysql
 sudo apt-get install mysql-server mysql-client --assume-yes
 
+# Drop the anonymous user(s)
+echo "drop from mysql.user where user=''; flush privileges;" | sudo mysql --defaults-file=/etc/mysql/debian.cnf
+
 # change the MySQL root password
 # note there are 3 root users by default so this has to be done by a sql query, not mysqladmin
 NEWMYSQLROOTPWD=$(pwgen -1asc 31)
