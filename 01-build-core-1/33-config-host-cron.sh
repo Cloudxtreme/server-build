@@ -9,6 +9,6 @@
 sudo sed -i '/^#cron\./{s/^#//}' /etc/rsyslog.d/50-default.conf
 
 # Commit to etckeeper
-if [ -e ~/source/temp/etckeeper ]; then 
+if [ -e /var/tmp/server-build/etckeeper ]; then 
   sudo etckeeper commit "Adjust cron config"
 fi

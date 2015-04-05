@@ -48,6 +48,6 @@ sudo addgroup --system sshlogin
 sudo gpasswd --add ubuntu sshlogin
 
 # Commit to etckeeper
-if [ -e ~/source/temp/etckeeper ]; then 
+if [ -e /var/tmp/server-build/etckeeper ]; then 
   sudo etckeeper commit "Configure SSH Server"
 fi

@@ -19,10 +19,10 @@ if [ -z ${__PUSHOVEREMAILAPIKEY+x} ]; then
 fi
 
 # Setup 'DNSHOSTNAME' variable (see config/etc-profile/7x-xxx-profile.sh)
-if [ -e ~/source/temp/cloudprofile ]; then 
-  for f in $(<~/source/temp/cloudprofile)
+if [ -e /var/tmp/server-build/cloudprofile ]; then 
+  for f in $(</var/tmp/server-build/cloudprofile)
   do
-    . ~/source/config/etc-profile/${f}
+    . /var/tmp/server-build/source/config/etc-profile/${f}
   done
   unset f
 fi
@@ -92,13 +92,13 @@ sudo newaliases
 sudo postfix start
 
 # Add logs to log entries agent
-if [ -e ~ubuntu/source/temp/logentries ]; then 
+if [ -e /var/tmp/server-build/logentries ]; then 
   sudo le follow "/var/log/mail.*" --name=mail
   sudo service logentries restart
 fi
 
 # Commit to etckeeper
-if [ -e ~ubuntu/source/temp/etckeeper ]; then 
+if [ -e /var/tmp/server-build/etckeeper ]; then 
   sudo etckeeper commit "Installed Postfix mail server "
 fi
 

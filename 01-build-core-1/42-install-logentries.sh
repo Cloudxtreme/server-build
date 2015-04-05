@@ -13,15 +13,15 @@ fi
 
 # download logentries package signing key
 gpg --keyserver pgp.mit.edu --recv-keys C43C79AD
-gpg -a --output ~/source/temp/logentries.key --export C43C79AD
+gpg -a --output /var/tmp/server-build/logentries.key --export C43C79AD
 gpg --batch --yes --delete-key C43C79AD
 
 # add logentries package signing key to apt keyring
 if [ -d /etc/apt/trusted.gpg.d ]; then
-	gpg --no-default-keyring --keyring ~/source/temp/logentries.gpg --import ~/source/temp/logentries.key
-	sudo cp ~/source/temp/logentries.gpg /etc/apt/trusted.gpg.d/logentries.gpg
+	gpg --no-default-keyring --keyring /var/tmp/server-build/logentries.gpg --import /var/tmp/server-build/logentries.key
+	sudo cp /var/tmp/server-build/logentries.gpg /etc/apt/trusted.gpg.d/logentries.gpg
 else
-	sudo apt-key add ~/source/temp/logentries.key
+	sudo apt-key add /var/tmp/server-build/logentries.key
 fi
 
 # update package source list
@@ -40,10 +40,10 @@ echo "deb http://rep.logentries.com/ $(lsb_release -sc) main" | sudo tee -a ${LI
 sudo apt-get update --quiet
 
 # Setup 'DNSHOSTNAME' variable (see config/profile/7x-xxx-profile.sh)
-if [ -e ~/source/temp/cloudprofile ]; then 
-  for f in $(<~/source/temp/cloudprofile)
+if [ -e /var/tmp/server-build/cloudprofile ]; then 
+  for f in $(</var/tmp/server-build/cloudprofile)
   do
-    . ~/source/config/profile/${f}
+    . /var/tmp/server-build/source/config/profile/${f}
   done
   unset f
 fi
@@ -66,9 +66,9 @@ sudo le follow "/var/log/auth.log" --name=auth
 sudo service logentries restart
 
 # Create LOGENTRIES flag file
-touch ~/source/temp/logentries
+touch /var/tmp/server-build/logentries
 
 # Commit to etckeeper
-if [ -e ~/source/temp/etckeeper ]; then 
+if [ -e /var/tmp/server-build/etckeeper ]; then 
   sudo etckeeper commit "Install & Configure Log Entries Agent"
 fi

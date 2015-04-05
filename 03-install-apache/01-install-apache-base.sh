@@ -133,7 +133,7 @@ sudo service php5-fpm restart
 sudo service apache2 restart
 
 # Add  logs to logentries agent
-if [ -e ~ubuntu/source/temp/logentries ]; then 
+if [ -e /var/tmp/server-build/logentries ]; then 
   sudo le follow "/var/log/apache2/*.log" --name=apache
   sudo le follow "/data/www/*/logs/*.log" --name=apache-hosts
   sudo le follow "/var/log/php5-fpm*.log" --name=apache-php
@@ -141,6 +141,6 @@ if [ -e ~ubuntu/source/temp/logentries ]; then
 fi
 
 # Commit to etckeeper
-if [ -e ~ubuntu/source/temp/etckeeper ]; then 
+if [ -e /var/tmp/server-build/etckeeper ]; then 
   sudo etckeeper commit "Installed and configured Apache with PHP5-FPM"
 fi

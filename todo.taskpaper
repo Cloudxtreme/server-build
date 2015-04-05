@@ -14,6 +14,7 @@ Core:
 	- really don't like replacing etc/crontab ... what edits are we making? @done
 	- fix error "__git_ps1: command not found" after 21-config-git is run
 	- mysql install script complains that pwgen isn't install @priority (is it enabled by multiverse?)
+	- ssh/authy: allow client to pass AUTHY_TOKEN - see https://github.com/authy/authy-ssh @priority
 
 Backups:
 	- Make Cron Jobs Quiet @priority @done

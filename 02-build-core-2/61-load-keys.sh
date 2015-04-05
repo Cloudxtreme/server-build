@@ -1,11 +1,8 @@
 #!/bin/bash
 ### ****************************************************************************
 ###
-### Configure installer's account
+### Load the stored keys
 ###
 ### ****************************************************************************
 
-
-# Make the installer account's homedir group readable and group sticky
-sudo chmod g+rxs ~
-
+/var/tmp/server-build/key.sh

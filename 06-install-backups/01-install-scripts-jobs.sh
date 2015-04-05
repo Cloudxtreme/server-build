@@ -26,6 +26,6 @@ sudo cp ~ubuntu/source/config/backups-scripts/* /data/scripts/
 sudo cp ~ubuntu/source/config/backups-conf/mybackups.cron /etc/cron.d/mybackups
 
 # Commit to etckeeper
-if [ -e ~ubuntu/source/temp/etckeeper ]; then 
+if [ -e /var/tmp/server-build/etckeeper ]; then 
   sudo etckeeper commit "Installed Backup Scripts"
 fi

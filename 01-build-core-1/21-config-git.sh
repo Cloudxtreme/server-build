@@ -16,12 +16,12 @@ sudo git config --system core.pager 'less -FRSX'
 sudo git config --system branch.autosetuprebase always
 
 # Setup 'USERNAME' variable (see config/profile/81-set-username.sh)
-. ~/source/config/profile/81-set-username.sh
+. /var/tmp/server-build/source/config/profile/81-set-username.sh
 # Setup 'DNSHOSTNAME' variable (see config/profile/7x-xxx-profile.sh)
-if [ -e ~/source/temp/cloudprofile ]; then 
-  for f in $(<~/source/temp/cloudprofile)
+if [ -e /var/tmp/server-build/cloudprofile ]; then 
+  for f in $(</var/tmp/server-build/cloudprofile)
   do
-    . ~/source/config/profile/${f}
+    . /var/tmp/server-build/source/config/profile/${f}
   done
   unset f
 fi

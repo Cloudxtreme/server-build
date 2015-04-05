@@ -1,7 +1,7 @@
 #!/bin/bash
 ### ****************************************************************************
 ###
-### Install etckeeper and configure it to use git
+### Configure some default settings for the host
 ###
 ### ****************************************************************************
 
@@ -13,6 +13,6 @@ sudo ln -s /usr/bin/vi /etc/alternatives/editor
 sudo useradd -D -s $BASH
 
 # Commit to etckeeper
-if [ -e ~/source/temp/etckeeper ]; then 
+if [ -e /var/tmp/server-build/etckeeper ]; then 
   sudo etckeeper commit "Configure host defaults"
 fi

@@ -22,4 +22,4 @@ sudo git gc
 popd
 
 # Create ETCKEEPER flag file
-touch ~/source/temp/etckeeper
+touch /var/tmp/server-build/etckeeper

@@ -76,9 +76,14 @@ wp plugin install use-google-libraries            # performance - use google's A
 wp plugin install google-analytics-for-wordpress  # yoast google analytics
 wp plugin install wordpress-seo                   # yoast wordpress seo
 wp plugin install edit-flow                       # editorial flow
-wp plugin install sumome                          # testing for now
-wp plugin install contact-form-7                  # contact forms
-wp plugin install mailchimp-for-wp                # mailchimp plugin
+wp plugin install simple-blog-stats               # perishable press simple stats
+wp plugin install simple-feed-stats               # perishable press simple stats
+
+### removed:
+#wp plugin install sumome                          # testing for now
+#wp plugin install contact-form-7                  # contact forms
+#wp plugin install mailchimp-for-wp                # mailchimp plugin
+#wp plugin install ninja-forms                     # contact forms
 
 
 #wp plugin install download-monitor                # download tools needed for email-before-download

@@ -5,6 +5,9 @@
 ###
 ### ****************************************************************************
 
+# Update apt package list
+sudo apt-get update --yes
+
 # Install utilities
 sudo apt-get install zip unzip pwgen nmap --assume-yes
 

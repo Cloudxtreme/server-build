@@ -10,6 +10,6 @@ sudo chmod +x /etc/init.d/email-at-startup
 sudo update-rc.d email-at-startup defaults 85 15
 
 # Commit to etckeeper
-if [ -e ~ubuntu/source/temp/etckeeper ]; then 
+if [ -e /var/tmp/server-build/etckeeper ]; then 
   sudo etckeeper commit "Confiured server to send email on startup/shudown"
 fi

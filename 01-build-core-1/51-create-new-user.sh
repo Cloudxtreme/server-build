@@ -45,14 +45,15 @@ sudo usermod -a -G adm,backup,sudo,www-data,ubuntu ${NEWUSER}
 sudo gpasswd --add ${NEWUSER} sshlogin
 
 # configure authy-ssh for two-factor authentication - CHECK BEFORE COPYING FOR OTHER USERS
-if [ -e ~/source/temp/ssh-authy ]; then 
+if [ -e /var/tmp/server-build/ssh-authy ]; then 
   echo "Enabling user for Authy-SSH"
   sudo /usr/local/bin/authy-ssh enable ${NEWUSER} ${__NEWUSERAUTHYINFO}
 fi
 
-# set up ssh keys by copying the default ubuntu user's keys
+# set up ssh keys
 sudo mkdir ${NEWUSERHOME}/.ssh
-sudo cp ~ubuntu/.ssh/authorized_keys ${NEWUSERHOME}/.ssh/authorized_keys
+sudo cp /var/tmp/server-build/source/config/ssh/$(cat /var/tmp/server-build/sshkey) ${NEWUSERHOME}/.ssh/authorized_keys
+#sudo cp ~ubuntu/.ssh/authorized_keys ${NEWUSERHOME}/.ssh/authorized_keys
 sudo chown -R ${NEWUSER}:${NEWUSER} ${NEWUSERHOME}/.ssh
 sudo chmod 0700 ${NEWUSERHOME}/.ssh
 sudo chmod g-s ${NEWUSERHOME}/.ssh
@@ -63,7 +64,7 @@ sudo touch ${NEWUSERHOME}/.sudo_as_admin_successful
 sudo chown ${NEWUSER}:${NEWUSER} ${NEWUSERHOME}/.sudo_as_admin_successful
 
 # Commit to etckeeper
-if [ -e ~/source/temp/etckeeper ]; then 
+if [ -e /var/tmp/server-build/etckeeper ]; then 
   sudo etckeeper commit "Added user ${NEWUSER}"
 fi
 

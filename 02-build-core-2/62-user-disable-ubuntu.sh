@@ -5,6 +5,12 @@
 ###
 ### ****************************************************************************
 
+# Check /home/ubuntu folder
+if [ ! -d /home/ubuntu ]; then
+	echo "Ubuntu user not found"
+	return
+fi
+
 # don't run this as the ubuntu user!
 shopt -s nocasematch
 if [ ${USER} == ubuntu ]; then
@@ -15,7 +21,7 @@ else
   echo "Disabling the ubuntu user"
 fi
 
-# remove from privileged and sensitive groups
+# remove from all (potentially privileged and sensitive) groups
 if [ -f ~ubuntu/.groups ]; then
 	rm --force ~ubuntu/.groups
 fi
@@ -45,6 +51,6 @@ sudo passwd --expire ubuntu
 sudo chmod g+rwxs ~ubuntu
 
 # Commit to etckeeper
-if [ -e ~ubuntu/source/temp/etckeeper ]; then 
+if [ -e /var/tmp/server-build/etckeeper ]; then 
   sudo etckeeper commit "Disabled ubuntu user"
 fi

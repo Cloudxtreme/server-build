@@ -16,6 +16,6 @@ sudo sed -i "s/^[ \t]*ForwardX11[ \t].*/ForwardX11 yes/" /etc/ssh/ssh_config
 sudo sed -i "s/^[ \t]*X11Forwarding.*/X11Forwarding yes/" /etc/ssh/sshd_config
 
 # Commit to etckeeper
-if [ -e ~ubuntu/source/temp/etckeeper ]; then 
+if [ -e /var/tmp/server-build/etckeeper ]; then 
   sudo etckeeper commit "Installed Basic XTerm Capabilities (for CrashPlan)"
 fi

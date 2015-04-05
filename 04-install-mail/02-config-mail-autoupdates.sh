@@ -30,6 +30,6 @@ sudo sed -i "s,^[ \t]*which=.*,which=both," /etc/apt/listchanges.conf
 #email_address=root
 
 # Commit to etckeeper
-if [ -e ~ubuntu/source/temp/etckeeper ]; then 
+if [ -e /var/tmp/server-build/etckeeper ]; then 
   sudo etckeeper commit "Configured automatic updates and apticron to use mail"
 fi

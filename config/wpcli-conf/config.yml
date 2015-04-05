@@ -10,7 +10,7 @@ core install:
   title: Wordpress Site Installed By wp-cli
   admin_user: wp-admin
   admin_password: admin123
-  admin_email: root@localhost
+  admin_email: root@localhost.localdomain
 
 core download:
   locale: en_GB

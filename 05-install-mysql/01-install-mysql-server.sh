@@ -30,16 +30,16 @@ NEWMYSQLROOTPWD=$(pwgen -1asc 31)
 echo "update mysql.user set password=PASSWORD('${NEWMYSQLROOTPWD}') where user='root'; flush privileges;" | sudo mysql --defaults-file=/etc/mysql/debian.cnf
 
 # Configure password-less access to mysql for root
-touch ~ubuntu/source/temp/mysql-root-access
-cat >~ubuntu/source/temp/mysql-root-access <<EOL
+touch /var/tmp/server-build/mysql-root-access
+cat >/var/tmp/server-build/mysql-root-access <<EOL
 [client]
 host=localhost
 password="${NEWMYSQLROOTPWD}"
 user="root"
 EOL
-sudo cp ~ubuntu/source/temp/mysql-root-access /root/.my.cnf
+sudo cp /var/tmp/server-build/mysql-root-access /root/.my.cnf
 sudo chmod 600 /root/.my.cnf
-sudo shred --force --zero ~ubuntu/source/temp/mysql-root-access
+sudo shred --force --zero /var/tmp/server-build/mysql-root-access
 unset NEWMYSQLROOTPWD
 # To use mysql client without any further prompts be sure to load the root user's home:
 #   sudo -H mysql
@@ -55,12 +55,12 @@ sudo chown mysql:mysql /data/mysql
 sudo chmod 2775 /data/mysql
 
 # Add logs to logentries agent
-if [ -e ~ubuntu/source/temp/logentries ]; then 
+if [ -e /var/tmp/server-build/logentries ]; then 
   sudo le follow "/var/log/mysql*" --name=mysql
   sudo service logentries restart
 fi
 
 # Commit to etckeeper
-if [ -e ~ubuntu/source/temp/etckeeper ]; then 
+if [ -e /var/tmp/server-build/etckeeper ]; then 
   sudo etckeeper commit "Installed MySQL server"
 fi
