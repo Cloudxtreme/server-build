@@ -12,8 +12,10 @@
 sudo a2dismod remoteip
 
 # Install & enable cloudflare module
-wget https://raw.github.com/cloudflare/mod_cloudflare/master/mod_cloudflare.c
-sudo apxs2 -a -i -c mod_cloudflare.c
+curl --progress-bar --location \
+     --url https://raw.github.com/cloudflare/mod_cloudflare/master/mod_cloudflare.c \
+     --output /var/tmp/server-build/mod_cloudflare.c
+sudo apxs2 -a -i -c /var/tmp/server-build/mod_cloudflare.c
 
 # Commit to etckeeper
 if [ -e /var/tmp/server-build/etckeeper ]; then 

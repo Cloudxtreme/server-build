@@ -22,14 +22,14 @@ sudo chmod g+rwxs /var/tmp/server-build
 # Download source files from GitHub
 #curl --progress-bar --header "Authorization: token {__GITHUBAUTHTOKEN}" \
 #  --location --url "https://api.github.com/repos/danielmerriott/server-build/tarball/master" \
-#  --output ~/source.tar.gz
+#  --output /var/tmp/server-build/source.tar.gz
 curl --progress-bar --location \
      --url "https://api.github.com/repos/danielmerriott/server-build/tarball/master" \
      --output /var/tmp/server-build/source.tar.gz
 
-# Extract into ~/source
+# Extract into /var/tmp/server-build/source
 rm -rf /var/tmp/server-build/source
-tar --gzip --extract --file source.tar.gz --directory /var/tmp/server-build --transform 's;/*[^/]*;source/;'
+tar --gzip --extract --file /var/tmp/server-build/source.tar.gz --directory /var/tmp/server-build --transform 's;/*[^/]*;source/;'
 # Remove tarball
 rm /var/tmp/server-build/source.tar.gz
 # Make build files executable

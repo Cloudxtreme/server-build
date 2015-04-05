@@ -39,7 +39,11 @@ echo -e "Setting password for ${NEWUSER}...\n"
 until sudo passwd ${NEWUSER}; do echo -e "\nPlease try again\n"; done
 
 # add to additional groups - CHECK BEFORE COPYING FOR OTHER USERS
-sudo usermod -a -G adm,backup,sudo,www-data,ubuntu ${NEWUSER} 
+sudo usermod -a -G adm ${NEWUSER}
+sudo usermod -a -G backup ${NEWUSER}
+sudo usermod -a -G sudo ${NEWUSER}
+sudo usermod -a -G www-data ${NEWUSER}
+sudo usermod -a -G ubuntu ${NEWUSER} 
 
 # grant ssh access via group control - CHECK BEFORE COPYING FOR OTHER USERS
 sudo gpasswd --add ${NEWUSER} sshlogin
@@ -74,14 +78,14 @@ fi
 # setup first login actions
 #sudo cp ${NEWUSERHOME}/.profile ${NEWUSERHOME}/.profile.old
 #sudo chown ${NEWUSER}:${NEWUSER} ${NEWUSERHOME}/.profile.old
-#echo "~ubuntu/source/build/49x-user-disable-ubuntu.sh" | sudo tee -a ${NEWUSERHOME}/.profile
+#echo "/var/tmp/server-build/source/build/49x-user-disable-ubuntu.sh" | sudo tee -a ${NEWUSERHOME}/.profile
 #echo rm ${NEWUSERHOME}/.profile | sudo tee -a ${NEWUSERHOME}/.profile
 #echo mv ${NEWUSERHOME}/.profile.old ${NEWUSERHOME}/.profile | sudo tee -a ${NEWUSERHOME}/.profile
 
 # copy GitHub ssh keys
-#sudo cp ~ubuntu/source/config/github-ssh/github-* ${NEWUSERHOME}/.ssh/
-#cat ~ubuntu/source/config/github-ssh/known_hosts | sudo tee -a ${NEWUSERHOME}/.ssh/known_hosts
-#cat ~ubuntu/source/config/github-ssh/config | sudo tee -a ${NEWUSERHOME}/.ssh/config
+#sudo cp /var/tmp/server-build/source/config/github-ssh/github-* ${NEWUSERHOME}/.ssh/
+#cat /var/tmp/server-build/source/config/github-ssh/known_hosts | sudo tee -a ${NEWUSERHOME}/.ssh/known_hosts
+#cat /var/tmp/server-build/source/config/github-ssh/config | sudo tee -a ${NEWUSERHOME}/.ssh/config
 #sudo find ${NEWUSERHOME}/.ssh -type f -exec chown ${NEWUSER}:${NEWUSER} {} \;
 #sudo find ${NEWUSERHOME}/.ssh -type f -exec chmod 600 {} \;
 

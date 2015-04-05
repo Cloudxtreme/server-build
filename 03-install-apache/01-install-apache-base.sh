@@ -48,6 +48,7 @@ for f in $(find /etc/php5 -name php.ini)
 do
 	sudo sed -i "s,^[ \t]*[;]*[ ]*date\.timezone.*,date\.timezone = $(cat /etc/timezone)," $f
 	sudo sed -i "s,^[ \t]*[;]*[ ]*upload_max_filesize.*,upload_max_filesize = 60M," $f
+	sudo sed -i "s,^[ \t]*[;]*[ ]*post_max_size.*,post_max_size = 60M," $f
 	sudo sed -i "s,^[ \t]*[;]*[ ]*expose_php.*,expose_php = Off," $f
 	sudo sed -i "s,^[ \t]*[;]*[ ]*allow_url_fopen.*,allow_url_fopen = Off," $f
 	sudo sed -i "s,^[ \t]*[;]*[ ]*allow_url_include.*,allow_url_include = Off," $f
@@ -55,10 +56,10 @@ done
 unset f
 
 # copy in reource files and link to /etc/apache
-sudo cp ~ubuntu/source/config/apache-conf/*.conf /etc/apache2/conf-available
+sudo cp /var/tmp/server-build/source/config/apache-conf/*.conf /etc/apache2/conf-available
 
 # Apache config
-for f in ~ubuntu/source/config/apache-conf/*.conf
+for f in /var/tmp/server-build/source/config/apache-conf/*.conf
 do
 	sudo a2enconf --quiet $(basename $f .conf)
 done
@@ -120,19 +121,19 @@ sudo a2enconf --quiet security
 ##sudo mv /etc/php5/fpm/pool.d/www.conf /etc/php5/fpm/pool.d/www.orig
 
 # Configure test site
-sudo cp --recursive ~ubuntu/source/config/apache-testsite /data/www/testsite
+sudo cp --recursive /var/tmp/server-build/source/config/apache-testsite /data/www/testsite
 sudo ln -s /data/www/testsite/config/999-test-apache.conf /etc/apache2/sites-available/999-testsite-test.conf
 ##sudo ln -s /data/www/testsite/config/999-phpfpm.conf /etc/php5/fpm/pool.d/999-testsite.conf
 sudo a2ensite 999-testsite-test
 
 # Add the additional logs config to logrotate
-sudo cp --recursive ~ubuntu/source/config/apache-logrotate /etc/logrotate.d
+sudo cp --recursive /var/tmp/server-build/source/config/apache-logrotate /etc/logrotate.d
 
 # Finally, restart apache and fpm
 sudo service php5-fpm restart
 sudo service apache2 restart
 
-# Add  logs to logentries agent
+# Add logs to logentries agent
 if [ -e /var/tmp/server-build/logentries ]; then 
   sudo le follow "/var/log/apache2/*.log" --name=apache
   sudo le follow "/data/www/*/logs/*.log" --name=apache-hosts

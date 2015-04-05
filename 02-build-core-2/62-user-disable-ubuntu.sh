@@ -8,7 +8,7 @@
 # Check /home/ubuntu folder
 if [ ! -d /home/ubuntu ]; then
 	echo "Ubuntu user not found"
-	return
+	exit
 fi
 
 # don't run this as the ubuntu user!

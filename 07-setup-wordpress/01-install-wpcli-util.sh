@@ -28,7 +28,7 @@ source /etc/bash_completion.d/wp-cli
 
 # setup a default config with sensible defaults in /data/www
 # alternative is to copy it into ~/.wp-cli/config.yml
-sudo cp ~ubuntu/source/config/wpcli-conf/config.yml /data/www/wp-cli.local.yml
+sudo cp /var/tmp/server-build/source/config/wpcli-conf/config.yml /data/www/wp-cli.local.yml
 sudo sed -i "s/^core install:$/core install:\n  server: ${PUBLICIP}/" /data/www/wp-cli.local.yml
 sudo sed -i "s/^[ \t]*admin_email:[ \t]*root@localhost[ \t]*/  admin_email: root@$(hostname -f)/" /data/www/wp-cli.local.yml
 sudo chown root:www-data /data/www/wp-cli.local.yml

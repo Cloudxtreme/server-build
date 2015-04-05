@@ -19,7 +19,7 @@ sudo sed -i "s,^[ \t]*[\#]*[ \t]*CUSTOM_NO_UPDATES_SUBJECT.*,CUSTOM_NO_UPDATES_S
 
 # Reschedule apticron to run weekly instead of daily
 sudo rm /etc/cron.d/apticron
-sudo cp ~ubuntu/source/apt-conf/apticron.cron /etc/cron.d/apticron
+sudo cp /var/tmp/server-build/source/apt-conf/apticron.cron /etc/cron.d/apticron
 
 # Disable apt-listchanges notification during apt updates/upgrades
 #sudo rm /etc/apt/apt.conf.d/20listchanges 

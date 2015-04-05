@@ -20,10 +20,10 @@ sudo apt-get install rdiff-backup --assume-yes
 
 # copy the scripts
 sudo mkdir /data/scripts
-sudo cp ~ubuntu/source/config/backups-scripts/* /data/scripts/
+sudo cp /var/tmp/server-build/source/config/backups-scripts/* /data/scripts/
 
 # setup a crontab file in /etc/crontab.d
-sudo cp ~ubuntu/source/config/backups-conf/mybackups.cron /etc/cron.d/mybackups
+sudo cp /var/tmp/server-build/source/config/backups-conf/mybackups.cron /etc/cron.d/mybackups
 
 # Commit to etckeeper
 if [ -e /var/tmp/server-build/etckeeper ]; then 

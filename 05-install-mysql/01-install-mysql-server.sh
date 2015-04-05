@@ -47,7 +47,7 @@ unset NEWMYSQLROOTPWD
 # or just use --defaults-file=/etc/mysql/debian.cnf
 
 # Mysql config
-sudo cp ~ubuntu/source/config/mysql-conf/*.cnf /etc/mysql/conf.d
+sudo cp /var/tmp/server-build/source/config/mysql-conf/*.cnf /etc/mysql/conf.d
 
 # Setup /data/mysql
 sudo mkdir /data/mysql
