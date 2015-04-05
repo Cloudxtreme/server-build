@@ -14,10 +14,10 @@
 sudo sed -i "s/^[ \t]*LogLevel.*/LogLevel VERBOSE/" /etc/ssh/sshd_config
 
 # Ensure root login via SSH is denied
-sudo sed -i "s/^[ \t]*PermitRootLogin.*/PermitRootLogin no/" /etc/ssh/sshd_config
+sudo sed -i "s/^.*PermitRootLogin.*/PermitRootLogin no/" /etc/ssh/sshd_config
 
 # Ensure password based authentication is denied
-sudo sed -i "s/^[ \t]*PasswordAuthentication.*/PasswordAuthentication no/" /etc/ssh/sshd_config
+sudo sed -i "s/^.*PasswordAuthentication.*/PasswordAuthentication no/" /etc/ssh/sshd_config
 
 # Use Protocol 2
 sudo sed -i "s/^[ \t]*Protocol.*/Protocol 2/" /etc/ssh/sshd_config
@@ -29,8 +29,8 @@ sudo sed -i "s/^[ \t]*UsePrivilegeSeparation.*/UsePrivilegeSeparation yes/" /etc
 sudo sed -i "s/^[ \t]*StrictModes.*/StrictModes yes/" /etc/ssh/sshd_config
 
 # Ensure RSA and Pubkey based authentication is allowed
-sudo sed -i "s/^[ \t]*RSAAuthentication.*/RSAAuthentication yes/" /etc/ssh/sshd_config
-sudo sed -i "s/^[ \t]*PubkeyAuthentication.*/PubkeyAuthentication yes/" /etc/ssh/sshd_config
+sudo sed -i "s/^.*RSAAuthentication.*/RSAAuthentication yes/" /etc/ssh/sshd_config
+sudo sed -i "s/^.*PubkeyAuthentication.*/PubkeyAuthentication yes/" /etc/ssh/sshd_config
 
 ### Appends
 

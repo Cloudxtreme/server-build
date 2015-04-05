@@ -30,9 +30,9 @@ NEWUSERNAME=${__NEWUSERLONGNAME}
 sudo groupadd --gid ${NEWUSERID} ${NEWUSER}
 sudo useradd --uid ${NEWUSERID} --gid ${NEWUSERID} --shell ${BASH} --create-home --comment "${NEWUSERNAME}" ${NEWUSER}
 
-# make the homedir group sticky
+# make the homedir group sticky and group writable
 NEWUSERHOME=$(getent passwd "${NEWUSER}" | cut -d: -f 6)
-sudo chmod g+rxs ${NEWUSERHOME}
+sudo chmod g+rwxs ${NEWUSERHOME}
 
 # set a password (user will login with ssh keys, but will require a password for access to sudo)
 echo -e "Setting password for ${NEWUSER}...\n"
@@ -52,7 +52,7 @@ fi
 
 # set up ssh keys
 sudo mkdir ${NEWUSERHOME}/.ssh
-sudo cp /var/tmp/server-build/source/config/ssh/$(cat /var/tmp/server-build/sshkey) ${NEWUSERHOME}/.ssh/authorized_keys
+sudo cp /var/tmp/server-build/source/config/ssh/$(cat /var/tmp/server-build/sshkey).pub ${NEWUSERHOME}/.ssh/authorized_keys
 #sudo cp ~ubuntu/.ssh/authorized_keys ${NEWUSERHOME}/.ssh/authorized_keys
 sudo chown -R ${NEWUSER}:${NEWUSER} ${NEWUSERHOME}/.ssh
 sudo chmod 0700 ${NEWUSERHOME}/.ssh
