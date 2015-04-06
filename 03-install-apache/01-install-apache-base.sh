@@ -15,7 +15,7 @@ sudo mkdir --parents /var/www
 sudo chown www-data:www-data /var/www
 sudo chmod 2755 /var/www
 
-#### may need to get apache dev tools (to get apxs2) before we mess about with repos
+# get apache2-dev tools (we need apxs2) before we mess about with repos
 sudo apt-get install apache2-dev --assume-yes
 
 # use the ppa:ondrej for apache2 and php5 to get the latest available
@@ -117,17 +117,8 @@ sudo sed -i "s/^[ \t]*#ServerSignature Off.*/ServerSignature Off/" /etc/apache2/
 # Relink security.conf
 sudo a2enconf --quiet security
 
-# Disable default PHP5-FPM config file
-##sudo mv /etc/php5/fpm/pool.d/www.conf /etc/php5/fpm/pool.d/www.orig
-
-# Configure test site
-sudo cp --recursive /var/tmp/server-build/source/config/apache-testsite /data/www/testsite
-sudo ln -s /data/www/testsite/config/999-test-apache.conf /etc/apache2/sites-available/999-testsite-test.conf
-##sudo ln -s /data/www/testsite/config/999-phpfpm.conf /etc/php5/fpm/pool.d/999-testsite.conf
-sudo a2ensite 999-testsite-test
-
 # Add the additional logs config to logrotate
-sudo cp --recursive /var/tmp/server-build/source/config/apache-logrotate /etc/logrotate.d
+sudo cp /var/tmp/server-build/source/config/apache-logrotate/* /etc/logrotate.d
 
 # Finally, restart apache and fpm
 sudo service php5-fpm restart
