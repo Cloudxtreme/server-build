@@ -4,7 +4,7 @@ Repo Maintenance:
 General:
 	- Error checking! Currently the scripts need to be watched as there is almost no error checking.
 	- Reduce the number of calls to apt-get that require downloads. For some reason these are running really slow now on AWS-AU-Sydney.
-	- keys need to be loaded after the reboot! @priority
+	- keys need to be loaded after the reboot! @priority @done
 
 Deployment:
 	- automatic deployment script, loops through the relevant folders executing scripts
@@ -13,8 +13,8 @@ Deployment:
 Core:
 	- really don't like replacing etc/crontab ... what edits are we making? @done
 	- fix error "__git_ps1: command not found" after 21-config-git is run
-	- mysql install script complains that pwgen isn't install @priority (is it enabled by multiverse?)
-	- ssh/authy: allow client to pass AUTHY_TOKEN - see https://github.com/authy/authy-ssh @priority
+	- mysql install script complains that pwgen isn't installed @priority (is it enabled by multiverse?) @done
+	- ssh/authy: allow client to pass AUTHY_TOKEN - see https://github.com/authy/authy-ssh @priority @done
 
 Backups:
 	- Make Cron Jobs Quiet @priority @done
@@ -23,8 +23,10 @@ Backups:
 	- CrashPlan: combine xterm install scripts with CrashPlan as that's the only reason we install this stuff
 
 Apache:
-	- test SNI is working
-	- move deploying the test site into it's own file (so this can be optional)
+	- test SNI is working (it should be by default, but need to check)
+	- move deploying the test site into it's own file (so this can be optional) @done
+	- logrotate doesn't seem to be working
+	- do we want logs in the site folder?
 
 Apache Deploy:
 	- Deploy site from git repo
@@ -37,4 +39,4 @@ Apache Scripts:
 
 Mail:
 	- remove pushover api string from install-mail-postfix @done
-	- purge files that contained pushover api string from the repo
+	- purge files that contained pushover api string from the git repo
