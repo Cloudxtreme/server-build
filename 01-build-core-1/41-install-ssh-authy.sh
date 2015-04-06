@@ -22,8 +22,8 @@ sudo sed -i "s/^[ \t]*api_key.*/api_key=${__AUTHYAPIKEY}/" /usr/local/bin/authy-
 # run install
 sudo bash /var/tmp/server-build/authy-ssh install /usr/local/bin
 
-# Updated sshd_config and keep tidy
-sudo sed -i "s,^[ \t]*ForceCommand[ \t]*/usr/local/bin/authy-ssh.*,\n# Use Authy-SSH\nForceCommand /usr/local/bin/authy-ssh login," /etc/ssh/sshd_config
+# Update sshd_config, and allow AUTHY_TOKEN to be passed to the environment
+sudo sed -i "s,^[ \t]*ForceCommand[ \t]*/usr/local/bin/authy-ssh.*,\n# Use Authy-SSH\nForceCommand /usr/local/bin/authy-ssh login\nAcceptEnv AUTHY_TOKEN," /etc/ssh/sshd_config
 
 # Create AUTHY flag file
 touch /var/tmp/server-build/ssh-authy
